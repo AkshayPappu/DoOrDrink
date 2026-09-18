@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Do or Drink",
+    "slug": "DoOrDrink",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0A0A0A",
+    "splash": {
+      "backgroundColor": "#0A0A0A",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.akshaypappu.doordrink",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.akshaypappu.doordrink",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0A0A",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
+    },
+    "owner": "akshaypappu",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}

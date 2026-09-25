@@ -63,10 +63,6 @@ export function GameScreen({
   const cardTranslateY = useRef(new Animated.Value(60)).current;
   const cardRotate = useRef(new Animated.Value(0)).current;
 
-  // Bottom actions fade-in
-  const bottomOpacity = useRef(new Animated.Value(0)).current;
-  const bottomTranslateY = useRef(new Animated.Value(30)).current;
-
   // Swipe-to-next gesture
   const panY = useRef(new Animated.Value(0)).current;
   const panResponder = useRef(
@@ -107,9 +103,6 @@ export function GameScreen({
       cardOpacity.setValue(0);
       cardTranslateY.setValue(60);
       cardRotate.setValue(0);
-      bottomOpacity.setValue(0);
-      bottomTranslateY.setValue(30);
-
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
 
       Animated.parallel([
@@ -143,22 +136,7 @@ export function GameScreen({
             friction: 6,
           }),
         ]),
-      ]).start(() => {
-        onShowCard();
-        Animated.parallel([
-          Animated.timing(bottomOpacity, {
-            toValue: 1,
-            duration: 300,
-            useNativeDriver: true,
-          }),
-          Animated.spring(bottomTranslateY, {
-            toValue: 0,
-            useNativeDriver: true,
-            tension: 50,
-            friction: 10,
-          }),
-        ]).start();
-      });
+      ]).start(onShowCard);
     }
   }, [phase]);
 
@@ -221,21 +199,16 @@ export function GameScreen({
         </Animated.View>
       )}
 
-      {(phase === 'drawing' || phase === 'showing') && (
-        <Animated.View
+      {phase === 'showing' && (
+        <View
           style={[
             styles.bottomActions,
-            {
-              paddingBottom: insets.bottom + spacing.lg,
-              opacity: bottomOpacity,
-              transform: [{ translateY: bottomTranslateY }],
-            },
+            { paddingBottom: insets.bottom + spacing.lg },
           ]}
-          pointerEvents={phase === 'showing' ? 'auto' : 'none'}
         >
           <PrimaryButton title="DONE — NEXT PLAYER" onPress={onNextPlayer} />
           <Text style={styles.swipeHint}>or swipe card up</Text>
-        </Animated.View>
+        </View>
       )}
 
       {/* Menu Modal */}

@@ -170,13 +170,15 @@ export function GameScreen({
       </View>
 
       {phase === 'waiting' && (
-        <View style={styles.centerContent}>
+        <View style={[styles.centerContent, { paddingBottom: Math.max(insets.bottom, spacing.xl) }]}>
+          <View style={styles.centerTop} />
           <Text style={styles.playerName}>{currentPlayer.name.toUpperCase()}</Text>
           <Text style={styles.yourTurn}>You're up.</Text>
           <View style={styles.stackContainer}>
             <CardStack count={Math.min(cardsRemaining, 4)} />
           </View>
           <PrimaryButton title="DRAW CARD" onPress={onDrawCard} />
+          <View style={styles.centerBottom} />
         </View>
       )}
 
@@ -313,6 +315,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: spacing.xl,
   } as ViewStyle,
+  centerTop: {
+    flex: 1,
+  } as ViewStyle,
+  centerBottom: {
+    flex: 0.5,
+  } as ViewStyle,
   playerName: {
     fontSize: 48,
     fontWeight: '900',
@@ -324,11 +332,12 @@ const styles = StyleSheet.create({
   yourTurn: {
     ...typography.title3,
     color: colors.textSecondary,
-    marginBottom: spacing.xxl,
+    marginBottom: spacing.lg,
   } as TextStyle,
   stackContainer: {
-    marginBottom: spacing.xxl,
+    marginBottom: spacing.lg,
     alignItems: 'center',
+    flexShrink: 1,
   } as ViewStyle,
   cardContainer: {
     flex: 1,

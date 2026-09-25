@@ -3,6 +3,7 @@ import { Platform, TextStyle } from 'react-native';
 const fontFamily = Platform.select({
   ios: 'System',
   android: 'Roboto',
+  web: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
   default: 'System',
 });
 

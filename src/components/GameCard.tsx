@@ -1,12 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, ViewStyle, TextStyle } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Platform, ViewStyle, TextStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { GameCard as GameCardType, CardType } from '../types';
 import { colors, typography, borderRadius, spacing } from '../theme';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const CARD_WIDTH = SCREEN_WIDTH - spacing.xl * 2;
-const CARD_HEIGHT = CARD_WIDTH * 1.45;
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+const MAX_APP_WIDTH = 480;
+const effectiveWidth = Platform.OS === 'web' ? Math.min(SCREEN_WIDTH, MAX_APP_WIDTH) : SCREEN_WIDTH;
+const CARD_WIDTH = effectiveWidth - spacing.xl * 2;
+const maxCardHeight = SCREEN_HEIGHT * 0.6;
+const CARD_HEIGHT = Math.min(CARD_WIDTH * 1.45, maxCardHeight);
 
 const TYPE_LABELS: Record<CardType, string> = {
   do: 'DO',

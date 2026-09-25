@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 import { HomeScreen } from './src/screens/HomeScreen';
 import { PlayersScreen } from './src/screens/PlayersScreen';
 import { GameScreen } from './src/screens/GameScreen';
@@ -27,7 +27,7 @@ export default function App() {
 
   const handleBack = () => setScreen('home');
 
-  return (
+  const content = (
     <GestureHandlerRootView style={styles.flex}>
       <SafeAreaProvider>
         {screen === 'home' && <HomeScreen onPlay={handlePlay} />}
@@ -62,10 +62,27 @@ export default function App() {
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );
+
+  if (Platform.OS === 'web') {
+    return <View style={styles.webOuter}><View style={styles.webInner}>{content}</View></View>;
+  }
+
+  return content;
 }
 
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+  },
+  webOuter: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#000',
+  },
+  webInner: {
+    flex: 1,
+    width: '100%',
+    maxWidth: 480,
+    overflow: 'hidden' as const,
   },
 });

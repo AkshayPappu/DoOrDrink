@@ -13,7 +13,7 @@ import {
   TextStyle,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import * as Haptics from 'expo-haptics';
+import * as Haptics from '../utils/haptics';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { PlayerChip } from '../components/PlayerChip';
 import { Player } from '../types';

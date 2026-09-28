@@ -209,6 +209,13 @@ export function GameScreen({
           ]}
         >
           <PrimaryButton title="DONE — NEXT PLAYER" onPress={onNextPlayer} />
+          <TouchableOpacity
+            style={styles.skipButton}
+            onPress={onSkipCard}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.skipButtonText}>SKIP THIS CARD</Text>
+          </TouchableOpacity>
           <Text style={styles.swipeHint}>or swipe card up</Text>
         </View>
       )}
@@ -354,6 +361,17 @@ const styles = StyleSheet.create({
     paddingTop: spacing.md,
     alignItems: 'center',
   } as ViewStyle,
+  skipButton: {
+    marginTop: spacing.md,
+    paddingVertical: spacing.sm + 2,
+    paddingHorizontal: spacing.xl,
+  } as ViewStyle,
+  skipButtonText: {
+    ...typography.subhead,
+    color: colors.textTertiary,
+    fontWeight: '600',
+    letterSpacing: 1,
+  } as TextStyle,
   swipeHint: {
     ...typography.caption,
     color: colors.textTertiary,
